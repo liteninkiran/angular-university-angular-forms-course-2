@@ -15,7 +15,7 @@
                     type="email"
                     name="email"
                     placeholder="Email"
-                    ngModel
+                    [(ngModel)]="val.email"
                     #email="ngModel"
                     required
                     minlength="3"
@@ -47,7 +47,7 @@
                     type="password"
                     name="password"
                     placeholder="Password"
-                    ngModel
+                    [(ngModel)]="val.password"
                     #password="ngModel"
                     required
                 >
