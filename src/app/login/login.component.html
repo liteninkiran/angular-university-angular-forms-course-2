@@ -18,11 +18,24 @@
                     ngModel
                     #email="ngModel"
                     required
+                    minlength="3"
+                    email
                 >
 
                 <!-- Error: Required -->
                 <mat-error *ngIf="email.errors?.required">
                     The email is mandatory.
+                </mat-error>
+
+                <!-- Error: Min Length -->
+                <mat-error *ngIf="email.errors?.minlength">
+                    Your email must have minimum {{ email.errors?.minlength.requiredLength }} chars,
+                    but it only has {{ email.errors?.minlength.actualLength }}.
+                </mat-error>
+
+                <!-- Error: Email -->
+                <mat-error *ngIf="email.errors?.email">
+                    This is not a valid email.
                 </mat-error>
 
             </mat-form-field>
