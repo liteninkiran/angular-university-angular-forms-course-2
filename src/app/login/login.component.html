@@ -50,6 +50,7 @@
                     [ngModel]="val.password"
                     #password="ngModel"
                     required
+                    minlength="8"
                     passwordStrength
                 >
 
@@ -58,6 +59,13 @@
                     Password is mandatory
                 </mat-error>
 
+                <!-- Error: Min Length -->
+                <mat-error *ngIf="password.errors?.minlength">
+                    Your password must have minimum {{ password.errors?.minlength.requiredLength }} chars,
+                    but it only has {{ password.errors?.minlength.actualLength }}
+                </mat-error>
+
+                <!-- Error: Password Strength -->
                 <mat-error *ngIf="password.errors?.passwordStrength">
                     Your password must have lower case, upper case and numeric characters.
                 </mat-error>
