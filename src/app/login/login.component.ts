@@ -19,8 +19,4 @@ export class LoginComponent implements OnInit {
         console.log(form.valid);
         console.log(event);
     }
-
-    public onEmailChange(event: any) {
-        console.log(event);
-    }
 }
