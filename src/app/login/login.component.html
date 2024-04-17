@@ -24,18 +24,18 @@
 
                 <!-- Error: Required -->
                 <mat-error *ngIf="email.errors?.required">
-                    The email is mandatory.
+                    Email is mandatory
                 </mat-error>
 
                 <!-- Error: Min Length -->
                 <mat-error *ngIf="email.errors?.minlength">
                     Your email must have minimum {{ email.errors?.minlength.requiredLength }} chars,
-                    but it only has {{ email.errors?.minlength.actualLength }}.
+                    but it only has {{ email.errors?.minlength.actualLength }}
                 </mat-error>
 
                 <!-- Error: Email -->
                 <mat-error *ngIf="email.errors?.email">
-                    This is not a valid email.
+                    Invalid email
                 </mat-error>
 
             </mat-form-field>
@@ -50,7 +50,18 @@
                     [ngModel]="val.password"
                     #password="ngModel"
                     required
+                    passwordStrength
                 >
+
+                <!-- Error: Required -->
+                <mat-error *ngIf="password.errors?.required">
+                    Password is mandatory
+                </mat-error>
+
+                <mat-error *ngIf="password.errors?.passwordStrength">
+                    Your password must have lower case, upper case and numeric characters.
+                </mat-error>
+
             </mat-form-field>
 
             <!-- Login Button -->
