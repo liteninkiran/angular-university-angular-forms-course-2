@@ -18,19 +18,16 @@ export class LoginReactiveComponent implements OnInit {
             updateOn: 'blur',
         }],
         password: ['', [
-            // Synchronous Validators
             Validators.required,
             Validators.minLength(8),
             createPasswordStrengthValidator(),
-        ], [
-            // Asynchronous Validators
         ]],
     });
 
     constructor(
         private fb: FormBuilder,
     ) {
-        
+
     }
 
     public ngOnInit(): void {

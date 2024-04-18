@@ -8,7 +8,10 @@
 
         <form class="login-form data-form" [formGroup]="form">
 
+            <!-- Email -->
             <mat-form-field>
+
+                <!-- Form Control -->
                 <input
                     matInput
                     type="email"
@@ -16,9 +19,29 @@
                     placeholder="Email"
                     formControlName="email"
                 >
+
+                <!-- Error: Required -->
+                <mat-error *ngIf="form.controls['email'].errors?.required">
+                    Email is mandatory
+                </mat-error>
+
+                <!-- Error: Min Length -->
+                <mat-error *ngIf="form.controls['email'].errors?.minlength">
+                    Your email must have minimum {{ email.errors?.minlength.requiredLength }} chars,
+                    but it only has {{ form.controls['email'].errors?.minlength.actualLength }}
+                </mat-error>
+
+                <!-- Error: Email -->
+                <mat-error *ngIf="form.controls['email'].errors?.email">
+                    Invalid email
+                </mat-error>
+
             </mat-form-field>
 
+            <!-- Password -->
             <mat-form-field>
+
+                <!-- Form Control -->
                 <input
                     matInput
                     type="password"
@@ -26,9 +49,31 @@
                     placeholder="Password"
                     formControlName="password"
                 >
+
+                <!-- Error: Required -->
+                <mat-error *ngIf="form.controls['password'].errors?.required">
+                    Password is mandatory
+                </mat-error>
+
             </mat-form-field>
 
-            <button mat-raised-button color="primary">
+            <ng-container *ngIf="form.controls['password'].errors | onlyOneError:['minlength', 'passwordStrength'] as error">
+
+                <!-- Error: Min Length -->
+                <div class="field-message" *ngIf="error.minlength">
+                    Your password must have minimum {{error.minlength.requiredLength}} chars,
+                    but it only has {{error.minlength.actualLength}}.
+                </div>
+
+                <!-- Error: Password Strength -->
+                <div class="field-message" *ngIf="error.passwordStrength">
+                    Your password must have lower case, upper case and numeric characters.
+                </div>
+
+            </ng-container>
+
+            <!-- Login Button -->
+            <button mat-raised-button color="primary" [disabled]="!form.valid">
                 Login
             </button>
 
