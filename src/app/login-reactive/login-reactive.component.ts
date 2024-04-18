@@ -33,4 +33,11 @@ export class LoginReactiveComponent implements OnInit {
     public ngOnInit(): void {
 
     }
+
+    public login(): void {
+        const formValue = this.form.value;
+        this.form.patchValue({
+        });
+        console.log(formValue);
+    }
 }
